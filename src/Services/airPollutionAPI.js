@@ -12,3 +12,5 @@ const getAirPollutionDataForCountry = async (lat, lon) => {
 
   return data;
 };
+
+export default getAirPollutionDataForCountry;
