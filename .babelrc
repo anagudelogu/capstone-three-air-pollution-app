@@ -1,0 +1,14 @@
+{
+  "presets": [
+      "@babel/preset-react"
+  ],
+  "plugins": [
+    [
+      "babel-plugin-styled-components",
+      {
+        "meaninglessFileNames": ["index", "styles"]
+      }
+    ],
+    "@babel/plugin-syntax-jsx"
+  ]
+}
