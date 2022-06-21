@@ -28,7 +28,24 @@ const fetchCountries = (region) => async (dispatch) => {
   dispatch(getCountriesStarted());
   try {
     const data = await getCountriesFromRegion(region);
-    dispatch(getCountriesSucceeded(data));
+
+    if (data.status && data.status === 404) {
+      throw new Error('No matches');
+    }
+
+    const organizedData = data.map(
+      ({
+        flags, name, latlng, area,
+      }) => ({
+        flag: flags.svg,
+        name: name.common,
+        lat: latlng[0],
+        long: latlng[1],
+        area,
+      }),
+    );
+
+    dispatch(getCountriesSucceeded(organizedData));
   } catch (error) {
     dispatch(getCountriesFailed(error.toString()));
   }
