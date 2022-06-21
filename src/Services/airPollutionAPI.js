@@ -7,10 +7,16 @@ const AIR_POLLUTION_ENDPOINT = 'air_pollution?';
 const finalUrl = (lat, lon) => `${URL + AIR_POLLUTION_ENDPOINT}lat=${lat}&lon=${lon}${API_KEY}`;
 
 const getAirPollutionDataForCountry = async (lat, lon) => {
-  const fetchRequest = new FetchRequest({ url: finalUrl(lat, lon) });
-  const data = await fetchRequest.call();
+  try {
+    const fetchRequest = new FetchRequest({
+      url: finalUrl(lat, lon),
+    });
+    const data = await fetchRequest.call();
 
-  return data;
+    return data;
+  } catch (error) {
+    throw new Error(error.toString());
+  }
 };
 
 export default getAirPollutionDataForCountry;
