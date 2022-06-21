@@ -28,7 +28,15 @@ const fetchAirPollutionData = (lat, lon) => async (dispatch) => {
   dispatch(getAirPollutionStarted());
   try {
     const data = await getAirPollutionDataForCountry(lat, lon);
-    dispatch(getAirPollutionSucceeded(data));
+
+    const { main, components, dt } = data.list[0];
+
+    const organizedData = {
+      aqi: main.aqi,
+      components,
+      dt,
+    };
+    dispatch(getAirPollutionSucceeded(organizedData));
   } catch (error) {
     dispatch(getAirPollutionFailed(error.toString()));
   }
