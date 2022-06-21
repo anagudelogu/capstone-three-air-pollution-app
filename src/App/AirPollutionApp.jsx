@@ -1,3 +1,9 @@
-const AirPollutionApp = () => <div className="App">Andres CRA Template!</div>;
+import Home from '../Containers/Home/Home';
+
+const AirPollutionApp = () => (
+  <main>
+    <Home />
+  </main>
+);
 
 export default AirPollutionApp;
