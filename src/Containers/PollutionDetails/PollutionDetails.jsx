@@ -5,7 +5,6 @@ import { fetchAirPollutionData } from '../../Redux/airPollution/airPollution';
 import DetailsCountry from '../../Components/DetailsCountry/DetailsCountry';
 import DetailsSummary from '../../Components/DetailsSummary/DetailsSummary';
 import DetailsAirComponents from '../../Components/DetailsAirComponents/DetailsAirComponents';
-// import ProgressBar from '@ramonak/react-progress-bar';
 
 const PollutionDetails = () => {
   const dispatch = useDispatch();
