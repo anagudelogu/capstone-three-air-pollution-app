@@ -4,9 +4,10 @@ import React from 'react';
 import { render as rtlRender } from '@testing-library/react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-// Import your own reducer
+
 import countriesReducer from '../Redux/countries/countries';
 import airPollutionReducer from '../Redux/airPollution/airPollution';
+import { MemoryRouter } from 'react-router-dom';
 
 const render = (
   ui,
@@ -23,7 +24,9 @@ const render = (
   } = {},
 ) => {
   const Wrapper = ({ children }) => (
-    <Provider store={store}>{children}</Provider>
+    <Provider store={store}>
+      <MemoryRouter initialEntries={['/']}>{children}</MemoryRouter>
+    </Provider>
   );
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
 };
