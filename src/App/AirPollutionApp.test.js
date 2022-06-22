@@ -40,10 +40,6 @@ test('should navigate through pages', async () => {
   await user.click(navbarRegionsButton);
 
   const americaLink = screen.getByText(/america/i);
-  const asiaLink = screen.getByText(/asia/i);
-  const africaLink = screen.getByText(/africa/i);
-  const europeLink = screen.getByText(/europe/i);
-  const oceaniaLink = screen.getByText(/oceania/i);
 
   await user.click(americaLink);
   content = screen.queryByRole('heading', {
@@ -51,24 +47,32 @@ test('should navigate through pages', async () => {
   });
   expect(content).toBeInTheDocument();
 
+  await user.click(navbarRegionsButton);
+  const asiaLink = screen.getByText(/asia/i);
   await user.click(asiaLink);
   content = screen.queryByRole('heading', {
     name: /asia is a continent/i,
   });
   expect(content).toBeInTheDocument();
 
+  await user.click(navbarRegionsButton);
+  const africaLink = screen.getByText(/africa/i);
   await user.click(africaLink);
   content = screen.queryByRole('heading', {
     name: /africa is a continent/i,
   });
   expect(content).toBeInTheDocument();
 
+  await user.click(navbarRegionsButton);
+  const europeLink = screen.getByText(/europe/i);
   await user.click(europeLink);
   content = screen.queryByRole('heading', {
     name: /europe is a continent/i,
   });
   expect(content).toBeInTheDocument();
 
+  await user.click(navbarRegionsButton);
+  const oceaniaLink = screen.getByText(/oceania/i);
   await user.click(oceaniaLink);
   content = screen.queryByRole('heading', {
     name: /oceania is a continent/i,

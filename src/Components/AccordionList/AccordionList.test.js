@@ -9,8 +9,13 @@ import AccordionList from './AccordionList';
 const testTitle = 'Test';
 const testList = ['1', '2', '3', '4'];
 
+const toggleMenu = jest.fn();
 test('Should render only the button at the beginning', () => {
-  render(<AccordionList list={testList}>{testTitle}</AccordionList>);
+  render(
+    <AccordionList list={testList} toggleMenu={toggleMenu}>
+      {testTitle}
+    </AccordionList>,
+  );
 
   const button = screen.getByRole('button', { name: /test/i });
   const list = screen.queryByRole('list');
@@ -23,7 +28,9 @@ test('When user clicks button, list should appear ', async () => {
   const user = userEvent.setup();
   render(
     <MemoryRouter>
-      <AccordionList list={testList}>{testTitle}</AccordionList>
+      <AccordionList list={testList} toggleMenu={toggleMenu}>
+        {testTitle}
+      </AccordionList>
     </MemoryRouter>,
   );
   const button = screen.getByRole('button', { name: /test/i });
