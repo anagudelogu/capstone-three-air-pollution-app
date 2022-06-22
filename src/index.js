@@ -8,6 +8,7 @@ import worker from './Mocks/browser';
 import store from './App/store';
 import Home from './Containers/Home/Home';
 import Region from './Containers/Region/Region';
+import PollutionDetails from './Containers/PollutionDetails/PollutionDetails';
 
 if (process.env.REACT_APP_STAGE === 'development') {
   worker.start();
@@ -24,7 +25,7 @@ root.render(
             <Route path=":regionName" element={<Region />} />
             <Route
               path=":regionName/:country/:lat/:lon"
-              element={<div>details page</div>}
+              element={<PollutionDetails />}
             />
           </Route>
           <Route path="*" element={<div>Not found</div>} />
