@@ -196,7 +196,7 @@ describe(Region, () => {
       </MemoryRouter>,
     );
 
-    const errorText = await screen.findByText(/there was an error/i);
+    const errorText = await screen.findByText(/error/i);
     expect(errorText).toBeInTheDocument();
   });
 

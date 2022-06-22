@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const RegionCountries = ({ countries, regionName }) => {
+const RegionCountries = ({ regionName }) => {
+  const { countries } = useSelector((state) => state.countries);
   const navigate = useNavigate();
   const flex = {
     display: 'flex',
@@ -39,15 +41,6 @@ const RegionCountries = ({ countries, regionName }) => {
 };
 
 RegionCountries.propTypes = {
-  countries: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      flag: PropTypes.string.isRequired,
-      lat: PropTypes.number.isRequired,
-      long: PropTypes.number.isRequired,
-      area: PropTypes.number.isRequired,
-    }),
-  ).isRequired,
   regionName: PropTypes.string.isRequired,
 };
 
