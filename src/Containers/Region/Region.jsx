@@ -8,7 +8,7 @@ import RegionCountries from '../../Components/RegionCountries/RegionCountries';
 
 const Region = () => {
   const dispatch = useDispatch();
-  const { regionName, country } = useParams();
+  const { regionName } = useParams();
   const [query, setQuery] = useState('');
   const { status, countries, error } = useSelector(
     (state) => state.countries,
@@ -16,7 +16,7 @@ const Region = () => {
 
   useEffect(() => {
     dispatch(fetchCountries(regionName));
-  }, [dispatch, regionName, country]);
+  }, [dispatch, regionName]);
 
   const handleChange = (e) => {
     setQuery(e.target.value);
