@@ -7,6 +7,7 @@ import './index.css';
 import worker from './Mocks/browser';
 import store from './App/store';
 import Home from './Containers/Home/Home';
+import Region from './Containers/Region/Region';
 
 if (process.env.REACT_APP_STAGE === 'development') {
   worker.start();
@@ -20,7 +21,11 @@ root.render(
         <Routes>
           <Route path="/" element={<AirPollutionApp />}>
             <Route index element={<Home />} />
-            <Route path=":regionName" element={<h2>Hello</h2>} />
+            <Route path=":regionName" element={<Region />} />
+            <Route
+              path=":regionName/:country/:lat/:lon"
+              element={<div>details page</div>}
+            />
           </Route>
           <Route path="*" element={<div>Not found</div>} />
         </Routes>
