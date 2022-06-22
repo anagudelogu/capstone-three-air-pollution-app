@@ -1,9 +1,16 @@
-import Home from '../Containers/Home/Home';
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import Navbar from '../Containers/Navbar/Navbar';
 
 const AirPollutionApp = () => (
-  <main>
-    <Home />
-  </main>
+  <>
+    <header>
+      <Navbar />
+    </header>
+    <main>
+      <Outlet />
+    </main>
+  </>
 );
 
 export default AirPollutionApp;

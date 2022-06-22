@@ -1,5 +1,6 @@
 import React from 'react';
 import RegionCard from '../../Components/RegionCard/RegionCard';
+import regions from '../../Helpers/regionsArr';
 
 const Home = () => (
   <section>
@@ -7,11 +8,9 @@ const Home = () => (
     <div>
       <h2>Select a region:</h2>
       <div>
-        <RegionCard>Asia</RegionCard>
-        <RegionCard>America</RegionCard>
-        <RegionCard>Europe</RegionCard>
-        <RegionCard>Africa</RegionCard>
-        <RegionCard>Oceania</RegionCard>
+        {regions.map((region) => (
+          <RegionCard key={region}>{region}</RegionCard>
+        ))}
       </div>
     </div>
   </section>
