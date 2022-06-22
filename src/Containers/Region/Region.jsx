@@ -10,9 +10,7 @@ const Region = () => {
   const dispatch = useDispatch();
   const { regionName } = useParams();
   const [query, setQuery] = useState('');
-  const { status, countries, error } = useSelector(
-    (state) => state.countries,
-  );
+  const { status, error } = useSelector((state) => state.countries);
 
   useEffect(() => {
     dispatch(fetchCountries(regionName));
@@ -27,12 +25,9 @@ const Region = () => {
       <RegionHeading>{regionName}</RegionHeading>
       <RegionSearchBar query={query} onChange={handleChange} />
       {status === 'loading' && <div>Loading...</div>}
-      {error && <div>There was an error fetching the data</div>}
+      {status === 'failed' && <div>{error}</div>}
       {status === 'succeeded' && (
-        <RegionCountries
-          countries={countries}
-          regionName={regionName}
-        />
+        <RegionCountries regionName={regionName} />
       )}
     </>
   );
