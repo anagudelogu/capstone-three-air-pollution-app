@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Twirl as Hamburger } from 'hamburger-react';
 import AccordionList from '../../Components/AccordionList/AccordionList';
 import useToggle from '../../Hooks/useToggle';
@@ -12,7 +13,14 @@ const Navbar = () => {
       <Hamburger size={20} toggled={openMenu} toggle={toggleMenu} />
       <styled.MenuBody isOpen={openMenu}>
         <li>
-          <AccordionList list={regions}>Regions</AccordionList>
+          <Link to="/" onClick={toggleMenu}>
+            Home
+          </Link>
+        </li>
+        <li>
+          <AccordionList list={regions} toggleMenu={toggleMenu}>
+            Regions
+          </AccordionList>
         </li>
       </styled.MenuBody>
     </styled.Nav>
