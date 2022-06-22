@@ -1,7 +1,5 @@
-/* eslint-disable react/prop-types */
-
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   MemoryRouter,
@@ -9,65 +7,15 @@ import {
   Route,
   useParams,
 } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
-import countriesReducer from '../../Redux/countries/countries';
-import airPollutionReducer from '../../Redux/airPollution/airPollution';
+import CustomRender from '../../Mocks/customRenderNoRouter';
 import '@testing-library/jest-dom';
+import { countriesTestHandlers } from '../../Mocks/handlers';
 
 import Region from './Region';
 
-const handlers = [
-  rest.get(/restcountries/i, (req, res, ctx) => res(
-    ctx.status(200),
-    ctx.json([
-      {
-        flags: {
-          svg: 'https://flagcdn.com/kr.svg',
-        },
-        name: {
-          common: 'South Korea',
-        },
-        latlng: [37.0, 127.5],
-        area: 100210.0,
-      },
-      {
-        flags: {
-          svg: 'https://flagcdn.com/mo.svg',
-        },
-        name: {
-          common: 'Macau',
-        },
-        latlng: [22.16666666, 113.55],
-        area: 30.0,
-      },
-    ]),
-  )),
-];
-
-const server = setupServer(...handlers);
-
-const CustomRender = (
-  ui,
-  {
-    preloadedState,
-    store = configureStore({
-      reducer: {
-        countries: countriesReducer,
-        airPollution: airPollutionReducer,
-      },
-      preloadedState,
-    }),
-    ...renderOptions
-  } = {},
-) => {
-  const Wrapper = ({ children }) => (
-    <Provider store={store}>{children}</Provider>
-  );
-  return render(ui, { wrapper: Wrapper, ...renderOptions });
-};
+const server = setupServer(...countriesTestHandlers);
 
 let testRegion;
 let component;

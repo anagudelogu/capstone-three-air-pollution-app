@@ -30,4 +30,32 @@ const handlers = [
   )),
 ];
 
+export const countriesTestHandlers = [
+  rest.get(/restcountries/i, (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json([
+      {
+        flags: {
+          svg: 'https://flagcdn.com/kr.svg',
+        },
+        name: {
+          common: 'South Korea',
+        },
+        latlng: [37.0, 127.5],
+        area: 100210.0,
+      },
+      {
+        flags: {
+          svg: 'https://flagcdn.com/mo.svg',
+        },
+        name: {
+          common: 'Macau',
+        },
+        latlng: [22.16666666, 113.55],
+        area: 30.0,
+      },
+    ]),
+  )),
+];
+
 export default handlers;
