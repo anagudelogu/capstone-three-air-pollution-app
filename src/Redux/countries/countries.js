@@ -5,6 +5,7 @@ import getCountriesFromRegion from '../../Services/restCountriesAPI';
 const FETCH_DATA_STARTED = 'air_pollution_app/countries/FETCH_DATA_STARTED';
 const FETCH_DATA_SUCCEEDED = 'air_pollution_app/countries/FETCH_DATA_SUCCEEDED';
 const FETCH_DATA_FAILED = 'air_pollution_app/countries/FETCH_DATA_FAILED';
+const SEARCH_COUNTRY = 'air_pollution_app/countries/SEARCH_COUNTRY';
 
 // Action Creators
 
@@ -22,7 +23,7 @@ const getCountriesFailed = (error) => ({
   error,
 });
 
-// Thunk
+// Thunks
 
 const fetchCountries = (region) => async (dispatch) => {
   dispatch(getCountriesStarted());
@@ -51,12 +52,21 @@ const fetchCountries = (region) => async (dispatch) => {
   }
 };
 
+const searchCountryBy = (query) => (dispatch, getState) => {
+  const { countries } = getState();
+  const Arr = countries.countries;
+  const filteredArr = Arr.filter(({ name }) => name.toLowerCase().includes(query.toLowerCase()));
+
+  dispatch({ type: SEARCH_COUNTRY, payload: filteredArr });
+};
+
 // Reducer
 
 const initialState = {
   countries: [],
   status: 'idle',
   error: null,
+  filteredCountries: [],
 };
 
 const countriesReducer = (state = initialState, action) => {
@@ -68,6 +78,7 @@ const countriesReducer = (state = initialState, action) => {
     return {
       ...state,
       countries: action.payload,
+      filteredCountries: action.payload,
       status: 'succeeded',
       error: null,
     };
@@ -75,6 +86,13 @@ const countriesReducer = (state = initialState, action) => {
 
   if (action.type === FETCH_DATA_FAILED) {
     return { ...state, status: 'failed', error: action.error };
+  }
+
+  if (action.type === SEARCH_COUNTRY) {
+    return {
+      ...state,
+      filteredCountries: action.payload,
+    };
   }
 
   return state;
@@ -85,6 +103,7 @@ export {
   getCountriesSucceeded,
   getCountriesFailed,
   fetchCountries,
+  searchCountryBy,
 };
 
 export default countriesReducer;

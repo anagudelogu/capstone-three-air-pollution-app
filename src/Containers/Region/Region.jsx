@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchCountries } from '../../Redux/countries/countries';
+import {
+  fetchCountries,
+  searchCountryBy,
+} from '../../Redux/countries/countries';
 import RegionHeading from '../../Components/RegionHeading/RegionHeading';
 import RegionSearchBar from '../../Components/RegionSearchBar/RegionSearchBar';
 import RegionCountries from '../../Components/RegionCountries/RegionCountries';
@@ -15,6 +18,10 @@ const Region = () => {
   useEffect(() => {
     dispatch(fetchCountries(regionName));
   }, [dispatch, regionName]);
+
+  useEffect(() => {
+    dispatch(searchCountryBy(query));
+  }, [query]);
 
   const handleChange = (e) => {
     setQuery(e.target.value);

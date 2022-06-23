@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const RegionCountries = ({ regionName }) => {
-  const { countries } = useSelector((state) => state.countries);
+  const { filteredCountries } = useSelector(
+    (state) => state.countries,
+  );
   const navigate = useNavigate();
   const flex = {
     display: 'flex',
@@ -12,7 +14,7 @@ const RegionCountries = ({ regionName }) => {
   };
   return (
     <ul>
-      {countries.map((country) => (
+      {filteredCountries.map((country) => (
         <li key={country.name}>
           <div
             style={flex}
