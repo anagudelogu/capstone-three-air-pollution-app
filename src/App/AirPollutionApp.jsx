@@ -7,7 +7,7 @@ const AirPollutionApp = () => (
     <header>
       <Navbar />
     </header>
-    <main style={{ marginTop: '60px' }}>
+    <main>
       <Outlet />
     </main>
   </>

@@ -11,6 +11,7 @@ const RegionCard = ({ children }) => {
       region={children}
       onClick={() => navigate(`/${children}`)}
     >
+      <styled.ArrowIcon />
       <styled.CardTitle>{children}</styled.CardTitle>
     </styled.CardContainer>
   );
