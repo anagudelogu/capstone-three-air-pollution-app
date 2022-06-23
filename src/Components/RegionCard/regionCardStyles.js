@@ -18,7 +18,7 @@ export const CardContainer = styled.div`
   }};
   &:nth-child(4n + 1),
   &:nth-child(4n + 4) {
-    background-color: var(--light-blue);
+    background-color: var(--mid2-blue);
   }
 
   background-repeat: no-repeat;

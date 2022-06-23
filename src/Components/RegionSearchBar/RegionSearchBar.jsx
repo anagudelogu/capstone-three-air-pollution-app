@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import * as styled from './regionSearchBarStyles';
 
 const RegionSearchBar = ({ query, onChange }) => (
-  <div>
-    <input
+  <styled.SearchBarContainer>
+    <styled.SearchBar
       type="text"
       name="searchBar"
       id="searchBar"
@@ -11,7 +12,7 @@ const RegionSearchBar = ({ query, onChange }) => (
       value={query}
       onChange={onChange}
     />
-  </div>
+  </styled.SearchBarContainer>
 );
 
 RegionSearchBar.propTypes = {

@@ -7,13 +7,16 @@ import {
 } from '../../Redux/countries/countries';
 import RegionHeading from '../../Components/RegionHeading/RegionHeading';
 import RegionSearchBar from '../../Components/RegionSearchBar/RegionSearchBar';
-import RegionCountries from '../../Components/RegionCountries/RegionCountries';
+import CountryCard from '../../Components/CountryCard/CountryCard';
+import CountryList from './regionStyles';
 
 const Region = () => {
   const dispatch = useDispatch();
   const { regionName } = useParams();
   const [query, setQuery] = useState('');
-  const { status, error } = useSelector((state) => state.countries);
+  const { status, error, filteredCountries } = useSelector(
+    (state) => state.countries,
+  );
 
   useEffect(() => {
     dispatch(fetchCountries(regionName));
@@ -34,7 +37,19 @@ const Region = () => {
       {status === 'loading' && <div>Loading...</div>}
       {status === 'failed' && <div>{error}</div>}
       {status === 'succeeded' && (
-        <RegionCountries regionName={regionName} />
+        <CountryList>
+          {filteredCountries.map((country) => (
+            <CountryCard
+              key={country.name}
+              regionName={regionName}
+              flag={country.flag}
+              name={country.name}
+              area={country.area}
+              lat={country.lat}
+              long={country.long}
+            />
+          ))}
+        </CountryList>
       )}
     </>
   );
