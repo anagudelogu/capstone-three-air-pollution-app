@@ -16,7 +16,7 @@ export const ExpandibleButton = styled.button`
 
 export const ExpandIcon = styled(MdExpandMore)`
   transition: 0.3s ease;
-  transform: ${(props) => (props.isOpen ? 'rotate(-90deg)' : 'rotate(0deg)')};
+  transform: ${(props) => (props.$isOpen ? 'rotate(-90deg)' : 'rotate(0deg)')};
   width: 20px;
   height: 20px;
 `;

@@ -19,7 +19,7 @@ const AccordionList = ({ children, list, toggleMenu }) => {
         onClick={toggleAccordion}
       >
         {children}
-        <styled.ExpandIcon isOpen={isOpen} />
+        <styled.ExpandIcon $isOpen={isOpen} />
       </styled.ExpandibleButton>
       {isOpen && (
         <styled.ExpandedList>
