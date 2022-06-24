@@ -5,6 +5,7 @@ import { fetchAirPollutionData } from '../../Redux/airPollution/airPollution';
 import DetailsCountry from '../../Components/DetailsCountry/DetailsCountry';
 import DetailsSummary from '../../Components/DetailsSummary/DetailsSummary';
 import DetailsAirComponents from '../../Components/DetailsAirComponents/DetailsAirComponents';
+import * as styled from './pollutionDetailsStyles';
 
 const PollutionDetails = () => {
   const dispatch = useDispatch();
@@ -20,17 +21,17 @@ const PollutionDetails = () => {
   }, [dispatch, lat, lon]);
 
   return (
-    <>
+    <styled.Section>
       <DetailsCountry country={country} regionName={regionName} />
       {status === 'failed' && <div>{error}</div>}
       {status === 'loading' && <div>Loading...</div>}
       {status === 'succeeded' && (
-        <div>
+        <styled.DetailsContainer>
           <DetailsSummary />
           <DetailsAirComponents />
-        </div>
+        </styled.DetailsContainer>
       )}
-    </>
+    </styled.Section>
   );
 };
 
