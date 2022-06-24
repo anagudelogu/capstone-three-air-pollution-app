@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import useToggle from '../../Hooks/useToggle';
+import * as styled from './accordionListStyles';
 
 const AccordionList = ({ children, list, toggleMenu }) => {
   const { state: isOpen, toggleState: toggleAccordion } = useToggle();
@@ -13,21 +14,23 @@ const AccordionList = ({ children, list, toggleMenu }) => {
 
   return (
     <>
-      <button type="button" onClick={toggleAccordion}>
+      <styled.ExpandibleButton
+        type="button"
+        onClick={toggleAccordion}
+      >
         {children}
-        {' '}
-        +
-      </button>
+        <styled.ExpandIcon $isOpen={isOpen} />
+      </styled.ExpandibleButton>
       {isOpen && (
-        <ul>
+        <styled.ExpandedList>
           {list.map((item) => (
-            <li key={item}>
+            <styled.ListItem key={item}>
               <Link to={`/${item}`} onClick={handleToggle}>
                 {item}
               </Link>
-            </li>
+            </styled.ListItem>
           ))}
-        </ul>
+        </styled.ExpandedList>
       )}
     </>
   );

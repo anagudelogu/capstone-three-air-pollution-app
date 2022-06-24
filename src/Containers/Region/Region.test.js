@@ -215,4 +215,23 @@ describe(Region, () => {
 
     expect(dummyCompTitle).toBeInTheDocument();
   });
+
+  test('When user clicks back icon, desired component should render', async () => {
+    component.unmount();
+    const user = userEvent.setup();
+    component = CustomRender(
+      <MemoryRouter initialEntries={['/', '/America']}>
+        <Routes>
+          <Route path="/:regionName" element={<Region />} />
+          <Route path="/" element={<div>Test passed</div>} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    const backIcon = screen.getByTestId('backBtn');
+    await user.click(backIcon);
+
+    const testPassedText = screen.getByText(/test passed/i);
+    expect(testPassedText).toBeInTheDocument();
+  });
 });

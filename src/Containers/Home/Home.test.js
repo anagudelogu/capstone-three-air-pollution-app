@@ -11,9 +11,7 @@ describe('Home page component', () => {
       name: /air pollution/i,
     });
 
-    const regionsTitle = screen.getByRole('heading', {
-      name: /select a region/i,
-    });
+    const regionsTitle = screen.getByText(/region/i);
 
     expect(mainTitle).toBeInTheDocument();
     expect(regionsTitle).toBeInTheDocument();

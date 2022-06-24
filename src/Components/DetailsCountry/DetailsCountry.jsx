@@ -1,12 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+import * as styled from './detailsCountryStyles';
 
-const DetailsCountry = ({ country, regionName }) => (
-  <div style={{ margin: '100px 0' }}>
-    <h2>{country}</h2>
-    <h3>{regionName}</h3>
-  </div>
-);
+const DetailsCountry = ({ country, regionName }) => {
+  const navigate = useNavigate();
+  return (
+    <styled.HeadingContainer>
+      <styled.BackIcon
+        data-testid="backBtn"
+        onClick={() => navigate(-1)}
+      />
+      <styled.Country>{country}</styled.Country>
+      <styled.Region>{regionName}</styled.Region>
+    </styled.HeadingContainer>
+  );
+};
 
 DetailsCountry.propTypes = {
   country: PropTypes.string.isRequired,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { rest } from 'msw';
@@ -102,5 +103,32 @@ describe(PollutionDetails, () => {
     const errorMsg = await screen.findByText(/error/i);
 
     expect(errorMsg).toBeInTheDocument();
+  });
+
+  test('If user clicks back icon, should render desired component', async () => {
+    const user = userEvent.setup();
+    CustomRender(
+      <MemoryRouter
+        initialEntries={['/America', '/America/Colombia/4/-72']}
+      >
+        <Routes>
+          <Route
+            path="/:regionName/:country/:lat/:lon"
+            element={<PollutionDetails />}
+          />
+          <Route
+            path="/:regionName"
+            element={<div>Test passed</div>}
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    const backIcon = screen.getByTestId('backBtn');
+
+    await user.click(backIcon);
+
+    const testPassedText = screen.getByText(/test passed/i);
+    expect(testPassedText).toBeInTheDocument();
   });
 });

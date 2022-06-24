@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Circles } from 'react-loader-spinner';
 import { fetchAirPollutionData } from '../../Redux/airPollution/airPollution';
 import DetailsCountry from '../../Components/DetailsCountry/DetailsCountry';
 import DetailsSummary from '../../Components/DetailsSummary/DetailsSummary';
 import DetailsAirComponents from '../../Components/DetailsAirComponents/DetailsAirComponents';
+import * as styled from './pollutionDetailsStyles';
 
 const PollutionDetails = () => {
   const dispatch = useDispatch();
@@ -20,17 +22,21 @@ const PollutionDetails = () => {
   }, [dispatch, lat, lon]);
 
   return (
-    <>
+    <styled.Section>
       <DetailsCountry country={country} regionName={regionName} />
       {status === 'failed' && <div>{error}</div>}
-      {status === 'loading' && <div>Loading...</div>}
+      {status === 'loading' && (
+        <styled.SpinnerContainer>
+          <Circles color="#00BFFF" height={80} width={80} />
+        </styled.SpinnerContainer>
+      )}
       {status === 'succeeded' && (
-        <div>
+        <styled.DetailsContainer>
           <DetailsSummary />
           <DetailsAirComponents />
-        </div>
+        </styled.DetailsContainer>
       )}
-    </>
+    </styled.Section>
   );
 };
 

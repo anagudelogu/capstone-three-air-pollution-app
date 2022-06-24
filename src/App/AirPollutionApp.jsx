@@ -1,5 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Navbar from '../Containers/Navbar/Navbar';
 
 const AirPollutionApp = () => (
@@ -7,7 +8,7 @@ const AirPollutionApp = () => (
     <header>
       <Navbar />
     </header>
-    <main style={{ marginTop: '60px' }}>
+    <main>
       <Outlet />
     </main>
   </>
