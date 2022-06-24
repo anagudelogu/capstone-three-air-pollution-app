@@ -24,7 +24,9 @@ export const InfoWrapper = styled.div`
 export const Flag = styled.img`
   grid-area: flag;
   border: 1px solid white;
-  max-height: 60px;
+  height: 70px;
+  width: 120px;
+  object-fit: cover;
 `;
 
 export const Textcontainer = styled.div`
@@ -52,6 +54,7 @@ export const CountryArea = styled.span`
 export const ArrowIcon = styled(BsArrowRightCircle)`
   grid-area: pass;
   position: absolute;
+  color: white;
   top: 5px;
   right: 5px;
 `;
