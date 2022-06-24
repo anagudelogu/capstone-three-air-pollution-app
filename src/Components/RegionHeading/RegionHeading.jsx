@@ -14,7 +14,7 @@ const RegionHeading = ({ children }) => {
     <styled.HeadingContainer>
       <styled.BackBtn
         data-testid="backBtn"
-        onClick={() => navigate(-1)}
+        onClick={() => navigate('/')}
       />
       {children === 'Africa' && <img src={Africa} alt={children} />}
       {children === 'Asia' && <img src={Asia} alt={children} />}

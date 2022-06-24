@@ -54,6 +54,10 @@ To run a local copy of this project follow these simple steps.
 
 ---
 
+## Design
+
+Original design idea by [Nelson Sakwa on Behance](https://www.behance.net/sakwadesignstudio).
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!

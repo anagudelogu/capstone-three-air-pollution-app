@@ -9,7 +9,7 @@ const DetailsCountry = ({ country, regionName }) => {
     <styled.HeadingContainer>
       <styled.BackIcon
         data-testid="backBtn"
-        onClick={() => navigate(-1)}
+        onClick={() => navigate(`/${regionName}`)}
       />
       <styled.Country>{country}</styled.Country>
       <styled.Region>{regionName}</styled.Region>
