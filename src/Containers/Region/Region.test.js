@@ -22,7 +22,13 @@ let component;
 
 const DummyComp = () => {
   const { country } = useParams();
-  return <h2>{country} is a country</h2>;
+  return (
+    <h2>
+      {country}
+      {' '}
+      is a country
+    </h2>
+  );
 };
 
 describe(Region, () => {
@@ -179,9 +185,7 @@ describe(Region, () => {
     component.unmount();
 
     server.use(
-      rest.get(/restcountries/i, (res, req, ctx) =>
-        res(ctx.status(404)),
-      ),
+      rest.get(/restcountries/i, (res, req, ctx) => res(ctx.status(404))),
     );
 
     CustomRender(
