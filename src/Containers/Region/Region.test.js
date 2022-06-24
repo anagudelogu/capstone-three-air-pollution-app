@@ -22,13 +22,7 @@ let component;
 
 const DummyComp = () => {
   const { country } = useParams();
-  return (
-    <h2>
-      {country}
-      {' '}
-      is a country
-    </h2>
-  );
+  return <h2>{country} is a country</h2>;
 };
 
 describe(Region, () => {
@@ -185,7 +179,9 @@ describe(Region, () => {
     component.unmount();
 
     server.use(
-      rest.get(/restcountries/i, (res, req, ctx) => res(ctx.status(404))),
+      rest.get(/restcountries/i, (res, req, ctx) =>
+        res(ctx.status(404)),
+      ),
     );
 
     CustomRender(
@@ -214,5 +210,24 @@ describe(Region, () => {
     );
 
     expect(dummyCompTitle).toBeInTheDocument();
+  });
+
+  test('When user clicks back icon, desired component should render', async () => {
+    component.unmount();
+    const user = userEvent.setup();
+    component = CustomRender(
+      <MemoryRouter initialEntries={['/', '/America']}>
+        <Routes>
+          <Route path="/:regionName" element={<Region />} />
+          <Route path="/" element={<div>Test passed</div>} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    const backIcon = screen.getByTestId('backBtn');
+    await user.click(backIcon);
+
+    const testPassedText = screen.getByText(/test passed/i);
+    expect(testPassedText).toBeInTheDocument();
   });
 });

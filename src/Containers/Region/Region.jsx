@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { Circles } from 'react-loader-spinner';
 import {
   fetchCountries,
   searchCountryBy,
@@ -8,7 +9,7 @@ import {
 import RegionHeading from '../../Components/RegionHeading/RegionHeading';
 import RegionSearchBar from '../../Components/RegionSearchBar/RegionSearchBar';
 import CountryCard from '../../Components/CountryCard/CountryCard';
-import CountryList from './regionStyles';
+import * as styled from './regionStyles';
 
 const Region = () => {
   const dispatch = useDispatch();
@@ -34,10 +35,14 @@ const Region = () => {
     <>
       <RegionHeading>{regionName}</RegionHeading>
       <RegionSearchBar query={query} onChange={handleChange} />
-      {status === 'loading' && <div>Loading...</div>}
+      {status === 'loading' && (
+        <styled.SpinnerContainer>
+          <Circles color="#00BFFF" height={80} width={80} />
+        </styled.SpinnerContainer>
+      )}
       {status === 'failed' && <div>{error}</div>}
       {status === 'succeeded' && (
-        <CountryList>
+        <styled.CountryList>
           {filteredCountries.map((country) => (
             <CountryCard
               key={country.name}
@@ -49,7 +54,7 @@ const Region = () => {
               long={country.long}
             />
           ))}
-        </CountryList>
+        </styled.CountryList>
       )}
     </>
   );

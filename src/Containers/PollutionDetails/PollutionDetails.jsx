@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Circles } from 'react-loader-spinner';
 import { fetchAirPollutionData } from '../../Redux/airPollution/airPollution';
 import DetailsCountry from '../../Components/DetailsCountry/DetailsCountry';
 import DetailsSummary from '../../Components/DetailsSummary/DetailsSummary';
@@ -24,7 +25,9 @@ const PollutionDetails = () => {
     <styled.Section>
       <DetailsCountry country={country} regionName={regionName} />
       {status === 'failed' && <div>{error}</div>}
-      {status === 'loading' && <div>Loading...</div>}
+      {status === 'loading' && (
+        <Circles color="#00BFFF" height={80} width={80} />
+      )}
       {status === 'succeeded' && (
         <styled.DetailsContainer>
           <DetailsSummary />
