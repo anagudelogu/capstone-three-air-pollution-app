@@ -26,7 +26,9 @@ const PollutionDetails = () => {
       <DetailsCountry country={country} regionName={regionName} />
       {status === 'failed' && <div>{error}</div>}
       {status === 'loading' && (
-        <Circles color="#00BFFF" height={80} width={80} />
+        <styled.SpinnerContainer>
+          <Circles color="#00BFFF" height={80} width={80} />
+        </styled.SpinnerContainer>
       )}
       {status === 'succeeded' && (
         <styled.DetailsContainer>
